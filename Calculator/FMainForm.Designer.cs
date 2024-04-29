@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    partial class MainForm
+    partial class FMainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -59,10 +59,13 @@
             button_CalculateCost = new Button();
             label17 = new Label();
             textBox_Mutation = new TextBox();
-            button_SaveTech = new Button();
             richTextBox_CurrentPlace = new RichTextBox();
             label_CurrentPlace = new Label();
             button_UpdatePlaces = new Button();
+            button_ChangePlaces = new Button();
+            textBox_Hint = new TextBox();
+            button_ShowDCalculator = new Button();
+            button_ShowDMutation = new Button();
             SuspendLayout();
             // 
             // textBox_WealthyR
@@ -306,9 +309,9 @@
             // 
             // button_CalculateCost
             // 
-            button_CalculateCost.Location = new Point(496, 52);
+            button_CalculateCost.Location = new Point(502, 12);
             button_CalculateCost.Name = "button_CalculateCost";
-            button_CalculateCost.Size = new Size(112, 32);
+            button_CalculateCost.Size = new Size(158, 32);
             button_CalculateCost.TabIndex = 32;
             button_CalculateCost.Text = "计算花费";
             button_CalculateCost.UseVisualStyleBackColor = true;
@@ -331,23 +334,13 @@
             textBox_Mutation.TabIndex = 34;
             textBox_Mutation.TextChanged += textBox16_TextChanged;
             // 
-            // button_SaveTech
-            // 
-            button_SaveTech.Location = new Point(496, 12);
-            button_SaveTech.Name = "button_SaveTech";
-            button_SaveTech.Size = new Size(112, 34);
-            button_SaveTech.TabIndex = 36;
-            button_SaveTech.Text = "保存特性";
-            button_SaveTech.UseVisualStyleBackColor = true;
-            button_SaveTech.Click += Button_SaveTech_Click;
-            // 
             // richTextBox_CurrentPlace
             // 
             richTextBox_CurrentPlace.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBox_CurrentPlace.Location = new Point(12, 333);
             richTextBox_CurrentPlace.Name = "richTextBox_CurrentPlace";
             richTextBox_CurrentPlace.ReadOnly = true;
-            richTextBox_CurrentPlace.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            richTextBox_CurrentPlace.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             richTextBox_CurrentPlace.Size = new Size(420, 224);
             richTextBox_CurrentPlace.TabIndex = 37;
             richTextBox_CurrentPlace.Text = "";
@@ -363,23 +356,66 @@
             // 
             // button_UpdatePlaces
             // 
-            button_UpdatePlaces.Location = new Point(496, 90);
+            button_UpdatePlaces.Location = new Point(502, 50);
             button_UpdatePlaces.Name = "button_UpdatePlaces";
-            button_UpdatePlaces.Size = new Size(112, 34);
+            button_UpdatePlaces.Size = new Size(158, 34);
             button_UpdatePlaces.TabIndex = 39;
-            button_UpdatePlaces.Text = "更新位";
+            button_UpdatePlaces.Text = "更新显示的位";
             button_UpdatePlaces.UseVisualStyleBackColor = true;
             button_UpdatePlaces.Click += button_UpdatePlaces_Click;
             // 
-            // MainForm
+            // button_ChangePlaces
+            // 
+            button_ChangePlaces.Location = new Point(502, 90);
+            button_ChangePlaces.Name = "button_ChangePlaces";
+            button_ChangePlaces.Size = new Size(158, 34);
+            button_ChangePlaces.TabIndex = 40;
+            button_ChangePlaces.Text = "自定义新的位";
+            button_ChangePlaces.UseVisualStyleBackColor = true;
+            button_ChangePlaces.Click += button_ChangePlaces_Click;
+            // 
+            // textBox_Hint
+            // 
+            textBox_Hint.Location = new Point(451, 333);
+            textBox_Hint.Multiline = true;
+            textBox_Hint.Name = "textBox_Hint";
+            textBox_Hint.ReadOnly = true;
+            textBox_Hint.Size = new Size(209, 137);
+            textBox_Hint.TabIndex = 42;
+            textBox_Hint.Text = "注：在执行操作前，请确定所有项目均填写完整，不得有空项（可以用0填充）；\r\n除花费外均支持小数。";
+            // 
+            // button_ShowDCalculator
+            // 
+            button_ShowDCalculator.Location = new Point(502, 130);
+            button_ShowDCalculator.Name = "button_ShowDCalculator";
+            button_ShowDCalculator.Size = new Size(158, 34);
+            button_ShowDCalculator.TabIndex = 43;
+            button_ShowDCalculator.Text = "位下度计算器";
+            button_ShowDCalculator.UseVisualStyleBackColor = true;
+            button_ShowDCalculator.Click += button_ShowDCalculator_Click;
+            // 
+            // button_ShowDMutation
+            // 
+            button_ShowDMutation.Location = new Point(502, 170);
+            button_ShowDMutation.Name = "button_ShowDMutation";
+            button_ShowDMutation.Size = new Size(158, 34);
+            button_ShowDMutation.TabIndex = 44;
+            button_ShowDMutation.Text = "突变计算器";
+            button_ShowDMutation.UseVisualStyleBackColor = true;
+            button_ShowDMutation.Click += button_ShowDMutation_Click;
+            // 
+            // FMainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(849, 569);
+            Controls.Add(button_ShowDMutation);
+            Controls.Add(button_ShowDCalculator);
+            Controls.Add(textBox_Hint);
+            Controls.Add(button_ChangePlaces);
             Controls.Add(button_UpdatePlaces);
             Controls.Add(label_CurrentPlace);
             Controls.Add(richTextBox_CurrentPlace);
-            Controls.Add(button_SaveTech);
             Controls.Add(label17);
             Controls.Add(textBox_Mutation);
             Controls.Add(button_CalculateCost);
@@ -411,7 +447,7 @@
             Controls.Add(textBox_PovertyR);
             Controls.Add(label1);
             Controls.Add(textBox_WealthyR);
-            Name = "MainForm";
+            Name = "FMainForm";
             Text = "PI制图实用工具";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -451,9 +487,12 @@
         private Button button_CalculateCost;
         private Label label17;
         private TextBox textBox_Mutation;
-        private Button button_SaveTech;
         private RichTextBox richTextBox_CurrentPlace;
         private Label label_CurrentPlace;
         private Button button_UpdatePlaces;
+        private Button button_ChangePlaces;
+        private TextBox textBox_Hint;
+        private Button button_ShowDCalculator;
+        private Button button_ShowDMutation;
     }
 }

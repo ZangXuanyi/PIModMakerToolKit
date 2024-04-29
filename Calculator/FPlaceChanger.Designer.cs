@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    partial class PlaceChanger
+    partial class FPlaceChanger
     {
         /// <summary>
         /// Required designer variable.
@@ -436,6 +436,7 @@
             button_Store.TabIndex = 83;
             button_Store.Text = "保存";
             button_Store.UseVisualStyleBackColor = true;
+            button_Store.Click += button_Store_Click;
             // 
             // button_Exit
             // 
@@ -445,6 +446,7 @@
             button_Exit.TabIndex = 84;
             button_Exit.Text = "退出";
             button_Exit.UseVisualStyleBackColor = true;
+            button_Exit.Click += button_Exit_Click;
             // 
             // PlaceChanger
             // 

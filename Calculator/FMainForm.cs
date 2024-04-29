@@ -1,11 +1,13 @@
 namespace Calculator
 {
-    public partial class MainForm : Form
+    public partial class FMainForm : Form
     {
         internal static Tech tech = new();
-        public MainForm()
+        public FMainForm()
         {
             InitializeComponent();
+            SetAllTextToZero();
+            UpdateAllPlaces();
         }
 
         #region Legacy code. Don't delete.
@@ -77,73 +79,50 @@ namespace Calculator
 
         private void button1_Click_CalculateCost(object sender, EventArgs e)
         {
+            SaveTech();
             int lowerCost = tech.GetLowerCost();
             int higherCost = tech.GetHigherCost();
             textBox_Cost.Text = $"{lowerCost}~{higherCost}";
         }
-        private void Button_SaveTech_Click(object sender, EventArgs e)
+        private void SaveTech()
         {
-            try { tech.WealthyResistance = double.Parse(textBox_WealthyR.Text); }
-            catch { tech.WealthyResistance = 0; }
-            finally { textBox_WealthyR.Text = tech.WealthyResistance.ToString(); }
-
-            try { tech.PovertyResistance = double.Parse(textBox_PovertyR.Text); }
-            catch { tech.PovertyResistance = 0; }
-            finally { textBox_PovertyR.Text = tech.PovertyResistance.ToString(); }
-
-            try { tech.HotResistance = double.Parse(textBox_HotR.Text); }
-            catch { tech.HotResistance = 0; }
-            finally { textBox_HotR.Text = tech.HotResistance.ToString(); }
-
-            try { tech.ColdResistance = double.Parse(textBox_ColdR.Text); }
-            catch { tech.ColdResistance = 0; }
-            finally { textBox_ColdR.Text = tech.ColdResistance.ToString(); }
-
-            try { tech.UrbanResistance = double.Parse(textBox_UrbanR.Text); }
-            catch { tech.UrbanResistance = 0; }
-            finally { textBox_UrbanR.Text = tech.UrbanResistance.ToString(); }
-
-            try { tech.RuralResistance = double.Parse(textBox_RuralR.Text); }
-            catch { tech.RuralResistance = 0; }
-            finally { textBox_RuralR.Text = tech.RuralResistance.ToString(); }
-
-            try { tech.AridResistance = double.Parse(textBox_AridR.Text); }
-            catch { tech.AridResistance = 0; }
-            finally { textBox_AridR.Text = tech.AridResistance.ToString(); }
-
-            try { tech.HumidResistance = double.Parse(textBox_HumidR.Text); }
-            catch { tech.HumidResistance = 0; }
-            finally { textBox_HumidR.Text = tech.HumidResistance.ToString(); }
-
-            try { tech.Infectivity = double.Parse(textBox_Infectivity.Text); }
-            catch { tech.Infectivity = 0; }
-            finally { textBox_Infectivity.Text = tech.Infectivity.ToString(); }
-
-            try { tech.Severity = double.Parse(textBox_Severity.Text); }
-            catch { tech.Severity = 0; }
-            finally { textBox_Severity.Text = tech.Severity.ToString(); }
-
-            try { tech.Lethality = double.Parse(textBox_Lethality.Text); }
-            catch { tech.Lethality = 0; }
-            finally { textBox_Lethality.Text = tech.Lethality.ToString(); }
-
-            try { tech.CureBaseMultiplier = double.Parse(textBox_CureBase.Text); }
-            catch { tech.CureBaseMultiplier = 0; }
-            finally { textBox_CureBase.Text = tech.CureBaseMultiplier.ToString(); }
-
-            try { tech.ResearchInefficiency = double.Parse(textBox_ResInefficiency.Text); }
-            catch { tech.ResearchInefficiency = 0; }
-            finally { textBox_ResInefficiency.Text = tech.ResearchInefficiency.ToString(); }
-
-            try { tech.ResearchInefficiency = int.Parse(textBox_Cost.Text); }
-            catch { tech.Cost = 0; }
-            finally { textBox_ResInefficiency.Text = tech.Cost.ToString(); }
-
-            try { tech.Mutation = double.Parse(textBox_Mutation.Text); }
-            catch { tech.Mutation = 0; }
-            finally { textBox_Mutation.Text = tech.Mutation.ToString(); }
+            try
+            {
+                tech.WealthyResistance = double.Parse(textBox_WealthyR.Text);
+                tech.PovertyResistance = double.Parse(textBox_PovertyR.Text);
+                tech.HotResistance = double.Parse(textBox_HotR.Text);
+                tech.ColdResistance = double.Parse(textBox_ColdR.Text);
+                tech.UrbanResistance = double.Parse(textBox_UrbanR.Text);
+                tech.RuralResistance = double.Parse(textBox_RuralR.Text);
+                tech.AridResistance = double.Parse(textBox_AridR.Text);
+                tech.HumidResistance = double.Parse(textBox_HumidR.Text);
+                tech.Infectivity = double.Parse(textBox_Infectivity.Text);
+                tech.Severity = double.Parse(textBox_Severity.Text);
+                tech.Lethality = double.Parse(textBox_Lethality.Text);
+                tech.CureBaseMultiplier = double.Parse(textBox_CureBase.Text);
+                tech.ResearchInefficiency = double.Parse(textBox_ResInefficiency.Text);
+                tech.Cost = int.Parse(textBox_Cost.Text);
+                tech.Mutation = double.Parse(textBox_Mutation.Text);
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                string caption = "¥¨¥é©`°kÉú£¡";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result = MessageBox.Show(msg, caption, buttons, MessageBoxIcon.Error);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
         }
+
         private void button_UpdatePlaces_Click(object sender, EventArgs e)
+        {
+            UpdateAllPlaces();
+        }
+
+        private void UpdateAllPlaces()
         {
             List<string> Places = new List<string>()
             {
@@ -164,6 +143,42 @@ namespace Calculator
             };
             string lines = String.Join("\r\n", Places);
             richTextBox_CurrentPlace.Text = lines;
+        }
+
+        private void SetAllTextToZero()
+        {
+            textBox_AridR.Text = "0";
+            textBox_ColdR.Text = "0";
+            textBox_Cost.Text = "0";
+            textBox_CureBase.Text = "0";
+            textBox_HotR.Text = "0";
+            textBox_HumidR.Text = "0";
+            textBox_Infectivity.Text = "0";
+            textBox_Lethality.Text = "0";
+            textBox_Mutation.Text = "0";
+            textBox_PovertyR.Text = "0";
+            textBox_ResInefficiency.Text = "0";
+            textBox_RuralR.Text = "0";
+            textBox_Severity.Text = "0";
+            textBox_UrbanR.Text = "0";
+            textBox_WealthyR.Text = "0";
+        }
+
+        private void button_ChangePlaces_Click(object sender, EventArgs e)
+        {
+            FPlaceChanger placeChanger = new FPlaceChanger();
+            placeChanger.Show();
+        }
+        private void button_ShowDCalculator_Click(object sender, EventArgs e)
+        {
+            SaveTech();
+            FDegreeCalculator degreeCalculator = new FDegreeCalculator();
+            degreeCalculator.Show();
+        }
+        private void button_ShowDMutation_Click(object sender, EventArgs e)
+        {
+            FMutationCalculator mutationCalculator = new FMutationCalculator();
+            mutationCalculator.Show();
         }
     }
 }
